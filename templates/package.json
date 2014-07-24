@@ -2,7 +2,7 @@
   "name": "<%= appNameSlug %>",
   "description": "<%= appDescription %>",
   "version": "<%= appVersion %>",
-  "main": "src/index.html",
+  "main": "www/index.html",
   "private": true,
   "dependencies": {
     "gulp": "~3.5.6",

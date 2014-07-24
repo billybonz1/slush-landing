@@ -1,4 +1,4 @@
-var gulp  = require('gulp'),
+devvar gulp  = require('gulp'),
 minifyCSS = require('gulp-minify-css'),
 jsmin     = require('gulp-jsmin'),
 imagemin  = require('gulp-imagemin'),
@@ -10,32 +10,32 @@ sass      = require('gulp-sass');
 
 
 var paths = {
-   styles: ['./www/css/*.css','!./www/css/*.min.css'],
-  scripts: ['./www/js/*.js','!./www/js/*.min.js']
+   styles: ['./dev/css/*.css','!./dev/css/*.min.css'],
+  scripts: ['./dev/js/*.js','!./dev/js/*.min.js']
 };
 
 
 //task for watch sass
 gulp.task('sass', function () {
-    gulp.src('./www/scss/all.scss')
+    gulp.src('./dev/scss/all.scss')
         .pipe(sass())
         .pipe(minifyCSS(opts))
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('./src/css/'));
+        .pipe(gulp.dest('./www/css/'));
 });
 
 // Task for concat the *.css files 
 gulp.task('concatcss', ['sass'], function() {
-  gulp.src('./src/css/*.css')
+  gulp.src('./www/css/*.css')
     .pipe(concat('all.min.css'))
-    .pipe(gulp.dest('./src/css/'))
+    .pipe(gulp.dest('./www/css/'))
 });
 
 // Task for minifier the *.png images
 gulp.task('imagemin',function () {
-  gulp.src('./www/img/*.*')
+  gulp.src('./dev/img/*.*')
   .pipe(imagemin(opts))
-  .pipe(gulp.dest('./src/img'))
+  .pipe(gulp.dest('./www/img'))dev
 })
 
 
@@ -44,29 +44,29 @@ gulp.task('minifyjs',function(){
   gulp.src(paths.scripts)
   .pipe(jsmin())
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('./www/js/min/'))
+    .pipe(gulp.dest('./dev/js/min/'))
 });
 
 // Task for concat the *.js files
 gulp.task('concatjs', ['minifyjs'], function() {
-  gulp.src('./www/js/min/*.js')
+  gulp.src('./dev/js/min/*.js')
     .pipe(concat('all.min.js'))
-    .pipe(gulp.dest('./src/js/'))
+    .pipe(gulp.dest('./www/js/'))
 });
 
 // task for minifier .html
 gulp.task('minifyhtml', function() {
-  gulp.src('./www/*.html')
-    .pipe(htmlmin({collapseWhitespace: true, removeComments:true, removeCommentsFromCDATA:true}))
-    .pipe(gulp.dest('./src/'))
+  gulp.src('./dev/*.html')
+    .pipe(htmlmin({collapseWhitespace: trwwwue, removeComments:true, removeCommentsFromCDATA:true}))
+    .pipe(gulp.dest('./www/'))
 });
 
 
 gulp.task('watch',function(){
-    gulp.watch('./www/js/*.js', ['concatjs']);
-    gulp.watch('./www/img/*.*', ['imagemin']);
-    gulp.watch('./www/*.html', ['minifyhtml']);
-    gulp.watch('./www/scss/*.scss', ['concatcss']);
+    gulp.watch('./dev/js/*.js', ['concatjs']);
+    gulp.watch('./dev/img/*.*', ['imagemin']);
+    gulp.watch('./dev/*.html', ['minifyhtml']);
+    gulp.watch('./dev/scss/*.scss', ['concatcss']);
 
 });
 
