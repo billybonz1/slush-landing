@@ -1,0 +1,25 @@
+{
+  "name": "<%= appNameSlug %>",
+  "version": "<%= appVersion %>",
+  "authors": [
+    "<%= appAuthor %>"
+  ],
+  "description": "<%= appDescription %>",
+  "main": "src/index.html",
+  "keywords": [
+    "landing"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "normalize.css": "~3.0.1"
+  }
+}
