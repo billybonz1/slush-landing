@@ -3,7 +3,7 @@
 ###Generate a simple landing page project 
 
 ##Dependencies 
-You need install [Gulp](http://gulpjs.com/), [Slush](http:(http://slushjs.github.io/#/) and [Bower](http://bower.io/)
+You need install [Gulp](http://gulpjs.com/), [Slush](http://slushjs.github.io/#/) and [Bower](http://bower.io/)
 
 You need usage sass and gulp
 
