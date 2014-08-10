@@ -1,4 +1,4 @@
-devvar gulp  = require('gulp'),
+var gulp  = require('gulp'),
 minifyCSS = require('gulp-minify-css'),
 jsmin     = require('gulp-jsmin'),
 imagemin  = require('gulp-imagemin'),
@@ -35,7 +35,7 @@ gulp.task('concatcss', ['sass'], function() {
 gulp.task('imagemin',function () {
   gulp.src('./dev/img/*.*')
   .pipe(imagemin(opts))
-  .pipe(gulp.dest('./www/img'))dev
+  .pipe(gulp.dest('./www/img'))
 })
 
 
@@ -57,7 +57,7 @@ gulp.task('concatjs', ['minifyjs'], function() {
 // task for minifier .html
 gulp.task('minifyhtml', function() {
   gulp.src('./dev/*.html')
-    .pipe(htmlmin({collapseWhitespace: trwwwue, removeComments:true, removeCommentsFromCDATA:true}))
+    .pipe(htmlmin({collapseWhitespace: true, removeComments:true, removeCommentsFromCDATA:true}))
     .pipe(gulp.dest('./www/'))
 });
 

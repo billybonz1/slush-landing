@@ -1,6 +1,6 @@
 {
   "name": "slush-landing",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Generate a simple landing page project",
   "main": "slushfile.js",
   "keywords": [
