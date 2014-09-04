@@ -32,7 +32,7 @@ don't forget manage your dependencies with Bower and npm
 now you ready for developer your landing page!
 
 
-##version 2.6
+##version 2.7
 
 Now slush-landing has new structure and uglify for minifier js files.
 
