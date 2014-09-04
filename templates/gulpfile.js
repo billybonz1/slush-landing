@@ -1,78 +1,73 @@
 var gulp  = require('gulp'),
 minifyCSS = require('gulp-minify-css'),
-jsmin     = require('gulp-jsmin'),
 imagemin  = require('gulp-imagemin'),
 concat    = require('gulp-concat'),
 rename    = require('gulp-rename'),
 htmlmin   = require('gulp-htmlmin'),
-sass      = require('gulp-sass');
+sass      = require('gulp-sass'),
+uglify    = require('gulp-uglify');
 
 
 
-var paths = {
-   styles: ['./dev/css/*.css','!./dev/css/*.min.css'],
-  scripts: ['./dev/js/*.js','!./dev/js/*.min.js']
+var pathsDev = {
+  html: ['./dev/*.html'],
+  styles: ['./dev/assets/scss/*.scss'],
+  scripts: ['./dev/assets/js/*.js'],
+  image: ['./dev/assets/img/*.*']
+
 };
 
 
-//task for watch sass
-gulp.task('sass', function () {
-    gulp.src('./dev/scss/all.scss')
-        .pipe(sass())
-        .pipe(minifyCSS(opts))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('./www/css/'));
+var pathsBuild = {
+  styles: ['./build/assets/css/*.css']
+};
+
+
+// Task for concat and minfier  and convert sass to css files 
+gulp.task('concat-min-sass-css', function() {
+  gulp.src(pathsDev.styles)
+    .pipe(sass())
+    .pipe(concat('main.css'))
+    .pipe(minifyCSS(opts))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('./build/assets/css/'))
 });
 
-// Task for concat the *.css files 
-gulp.task('concatcss', ['sass'], function() {
-  gulp.src('./www/css/*.css')
-    .pipe(concat('all.min.css'))
-    .pipe(gulp.dest('./www/css/'))
-});
 
-// Task for minifier the *.png images
+// Task for minifier the images
 gulp.task('imagemin',function () {
-  gulp.src('./dev/img/*.*')
-  .pipe(imagemin(opts))
-  .pipe(gulp.dest('./www/img'))
+  gulp.src(pathsDev.image)
+    .pipe(imagemin())
+    .pipe(gulp.dest('./build/assets/img/'))
 })
 
 
-// Task for minifier the *.js files 
-gulp.task('minifyjs',function(){
-  gulp.src(paths.scripts)
-  .pipe(jsmin())
-    .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('./dev/js/min/'))
-});
-
-// Task for concat the *.js files
-gulp.task('concatjs', ['minifyjs'], function() {
-  gulp.src('./dev/js/min/*.js')
-    .pipe(concat('all.min.js'))
-    .pipe(gulp.dest('./www/js/'))
+// Task for concat and minifier the *.js files
+gulp.task('concat-min-js', function() {
+  gulp.src(pathsDev.scripts)
+    .pipe(concat('main.js'))
+      .pipe(uglify())
+      .pipe(rename({suffix: '.min'}))
+      .pipe(gulp.dest('./build/assets/js/'))
 });
 
 // task for minifier .html
 gulp.task('minifyhtml', function() {
-  gulp.src('./dev/*.html')
+  gulp.src(pathsDev.html)
     .pipe(htmlmin({collapseWhitespace: true, removeComments:true, removeCommentsFromCDATA:true}))
-    .pipe(gulp.dest('./www/'))
+    .pipe(gulp.dest('./build/'))
 });
 
 
 gulp.task('watch',function(){
-    gulp.watch('./dev/js/*.js', ['concatjs']);
-    gulp.watch('./dev/img/*.*', ['imagemin']);
-    gulp.watch('./dev/*.html', ['minifyhtml']);
-    gulp.watch('./dev/scss/*.scss', ['concatcss']);
-
+    gulp.watch(pathsDev.scripts, ['concat-min-js']);
+    gulp.watch(pathsDev.html,  ['minifyhtml']);
+    gulp.watch(pathsDev.styles, ['concat-min-sass-css']);
 });
 
 // Taks default gulp! 
-gulp.task('default', function(){
-  console.log('running tasks...')
+gulp.task('default', ['imagemin', 'concat-min-sass-css', 'concat-min-js', 'minifyhtml', 'watch'], function(){
+  console.log('gulp running...')
 });
 
 

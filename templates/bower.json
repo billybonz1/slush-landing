@@ -5,7 +5,7 @@
     "<%= appAuthor %>"
   ],
   "description": "<%= appDescription %>",
-  "main": "www/index.html",
+  "main": "build/index.html",
   "keywords": [
     "landing"
   ],

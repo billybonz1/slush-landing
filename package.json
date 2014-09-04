@@ -1,6 +1,6 @@
 {
   "name": "slush-landing",
-  "version": "0.1.4",
+  "version": "0.2.4",
   "description": "Generate a simple landing page project",
   "main": "slushfile.js",
   "keywords": [
@@ -11,13 +11,17 @@
     "bower"
   ],
   "dependencies": {
-    "gulp": "~3.5.6",
+    "gulp": "^3.5.6",
     "gulp-template": "~0.1.1",
     "gulp-install": "~0.1.1",
     "gulp-conflict": "~0.1.1",
     "gulp-rename": "~1.2.0",
     "underscore.string": "~2.3.3",
     "inquirer": "~0.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magdielduarte/slush-landing"
   },
   "author": "Diel Duarte",
   "license": "MIT"

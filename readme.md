@@ -25,10 +25,15 @@ slush landing
 run the gulp
 
 ```
-gulp wacth 
+gulp
 ```
 don't forget manage your dependencies with Bower and npm
 
 now you ready for developer your landing page!
+
+
+##version 2.4
+
+Now slush-landing has new structure and uglify for minifier js files.
 
 Made with 3> by Diel Duarte
