@@ -30,7 +30,7 @@ gulp.task('concat-min-sass-css', function() {
     .pipe(concat('main.css'))
     .pipe(minifyCSS(opts))
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('./build/assets/css/'))
+    .pipe(gulp.dest('./build/assets/css/'));
 });
 
 
@@ -38,7 +38,7 @@ gulp.task('concat-min-sass-css', function() {
 gulp.task('imagemin',function () {
   gulp.src(pathsDev.image)
     .pipe(imagemin())
-    .pipe(gulp.dest('./build/assets/img/'))
+    .pipe(gulp.dest('./build/assets/img/'));
 })
 
 
@@ -48,14 +48,14 @@ gulp.task('concat-min-js', function() {
     .pipe(concat('main.js'))
       .pipe(uglify())
       .pipe(rename({suffix: '.min'}))
-      .pipe(gulp.dest('./build/assets/js/'))
+      .pipe(gulp.dest('./build/assets/js/'));
 });
 
 // task for minifier .html
 gulp.task('minifyhtml', function() {
   gulp.src(pathsDev.html)
     .pipe(htmlmin({collapseWhitespace: true, removeComments:true, removeCommentsFromCDATA:true}))
-    .pipe(gulp.dest('./build/'))
+    .pipe(gulp.dest('./build/'));
 });
 
 
